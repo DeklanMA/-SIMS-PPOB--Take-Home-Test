@@ -7,8 +7,8 @@ const navClass = ({isActive}: {isActive: boolean}) =>
 
 export default function Navbar() {
   return (
-    <div className="sticky top-0 z-50">
-      <nav className="flex items-center justify-between px-32 border-b border-gray-300 bg-white p-4">
+    <div className="sticky top-0 z-50 border-b border-gray-300 bg-white ">
+      <nav className="flex items-center justify-between px-32 p-4 mx-auto w-full max-w-7xl">
         <NavLink to="/" className="flex items-center gap-2">
           <img src="/Logo.png" alt="logo" className="w-5" />
           <span className="font-semibold text-black text-md">SIMS PPOB</span>

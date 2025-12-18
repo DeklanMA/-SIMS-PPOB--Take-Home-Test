@@ -45,7 +45,7 @@ export default function ServiceDetailPage() {
   };
 
   return (
-    <div className="bg-white h-screen p-6 rounded-lg shadow space-y-4 text-black">
+    <div className="bg-white h-screen p-6 rounded-lg  space-y-4 text-black">
       <DashboardHeader
         name={`${profile?.data.first_name} ${profile?.data.last_name}`}
         avatarUrl={profile?.data.profile_image}

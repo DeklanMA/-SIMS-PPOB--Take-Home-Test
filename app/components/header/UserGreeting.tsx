@@ -16,7 +16,7 @@ export function UserGreeting({name, avatarUrl}: UserGreetingProps) {
       />
 
       <div>
-        <p className="text-sm text-gray-500">Selamat datang,</p>
+        <p className="text-md text-gray-600">Selamat datang,</p>
         <p className="font-semibold text-3xl">{name}</p>
       </div>
     </div>

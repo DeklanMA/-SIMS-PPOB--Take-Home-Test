@@ -10,13 +10,12 @@ export default function ProtectedLayout() {
   if (!isAuth) return <Navigate to="/login" replace />;
 
   return (
-    <div className="app-layout">
+    <div className="app-layout w-full bg-white ">
       <Navbar />
 
- 
       {navigation.state === 'loading' && <PageLoader />}
 
-      <main className="bg-white min-h-screen">
+      <main className="bg-white min-h-screen  mx-auto w-full max-w-7xl">
         <Outlet />
       </main>
     </div>
