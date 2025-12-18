@@ -7,10 +7,6 @@ Aplikasi ini mengimplementasikan fitur autentikasi, top up saldo, pembayaran lay
 🔗 **Live Demo**  
 https://sims-ppob-deklanmalik.vercel.app/
 
-🔗 **Source Code**  
-https://github.com/DeklanMA/-SIMS-PPOB--Take-Home-Test
-
----
 
 ## 📌 Teknologi yang Digunakan
 - **React JS**
@@ -21,7 +17,6 @@ https://github.com/DeklanMA/-SIMS-PPOB--Take-Home-Test
 - **JWT Authentication**
 - **Vite**
 
----
 
 ## ✨ Fitur Utama
 
@@ -56,29 +51,7 @@ https://github.com/DeklanMA/-SIMS-PPOB--Take-Home-Test
 - Upload foto profil (JPEG / PNG, max 100KB)
 - Default avatar jika belum upload
 - Logout
-
----
-
-## 📂 Struktur Folder
 ```
-
-src/
-├── app/
-│   ├── routes/
-│   ├── features/
-│   ├── store/
-│   ├── utils/
-│   └── components/
-│       ├── common/
-│       ├── header/
-│       ├── modal/
-│       ├── topup/
-│       └── transaction/
-
-````
-
----
-
 ## ⚙️ Cara Menjalankan Project (Local)
 
 ### 1️⃣ Clone Repository
@@ -121,7 +94,6 @@ http://localhost:5173
 * Email user diambil dari payload JWT
 * Validasi input dilakukan di sisi client
 * Aplikasi di-deploy menggunakan **free hosting**
-* Pengerjaan dilakukan **secara mandiri**
 
 ---
 
@@ -130,10 +102,7 @@ http://localhost:5173
 **Deklan Malik Akbar**
 Web Programmer (React JS)
 
----
-
-Terima kasih 🙏
 
 ```
 
----
+
