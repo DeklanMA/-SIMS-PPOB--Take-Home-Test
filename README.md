@@ -1,5 +1,3 @@
----
-
 ```md
 # SIMS PPOB – Take Home Test (React JS)
 
