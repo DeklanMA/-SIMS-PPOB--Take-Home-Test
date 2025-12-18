@@ -1,87 +1,139 @@
-# Welcome to React Router!
 
-A modern, production-ready template for building full-stack React applications using React Router.
+```md
+# SIMS PPOB – Take Home Test (React JS)
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/remix-run/react-router-templates/tree/main/default)
+Web application SIMS PPOB (Payment Point Online Bank) yang dibangun sebagai bagian dari **Take Home Test Web Programmer (React JS)**.  
+Aplikasi ini mengimplementasikan fitur autentikasi, top up saldo, pembayaran layanan, riwayat transaksi, serta manajemen profil pengguna.
 
-## Features
+🔗 **Live Demo**  
+https://sims-ppob-deklanmalik.vercel.app/
 
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🔒 TypeScript by default
-- 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
+🔗 **Source Code**  
+https://github.com/DeklanMA/-SIMS-PPOB--Take-Home-Test
 
-## Getting Started
+---
 
-### Installation
+## 📌 Teknologi yang Digunakan
+- **React JS**
+- **TypeScript**
+- **React Router v7**
+- **Redux Toolkit & RTK Query**
+- **Tailwind CSS**
+- **JWT Authentication**
+- **Vite**
 
-Install the dependencies:
+---
+
+## ✨ Fitur Utama
+
+### 🔐 Authentication
+- Login & Register
+- Proteksi halaman menggunakan JWT
+- Auto logout jika token tidak valid / expired
+
+### 🏠 Dashboard
+- Menampilkan saldo user
+- Menampilkan layanan pembayaran
+- Banner promo (carousel)
+
+### 💳 Top Up
+- Input nominal top up (Rp10.000 – Rp1.000.000)
+- Preset nominal
+- Validasi input
+- Konfirmasi Top Up
+- Modal sukses & gagal
+- Saldo otomatis ter-update setelah top up
+
+### 🧾 Transaksi
+- Pembayaran layanan
+- Konfirmasi pembayaran
+- Riwayat transaksi
+- Pagination (Show More)
+- Data diurutkan dari transaksi terbaru
+
+### 👤 Profile
+- Menampilkan data user
+- Update nama depan & belakang
+- Upload foto profil (JPEG / PNG, max 100KB)
+- Default avatar jika belum upload
+- Logout
+
+---
+
+## 📂 Struktur Folder
+```
+
+src/
+├── app/
+│   ├── routes/
+│   ├── features/
+│   ├── store/
+│   ├── utils/
+│   └── components/
+│       ├── common/
+│       ├── header/
+│       ├── modal/
+│       ├── topup/
+│       └── transaction/
+
+````
+
+---
+
+## ⚙️ Cara Menjalankan Project (Local)
+
+### 1️⃣ Clone Repository
+```bash
+git clone https://github.com/DeklanMA/-SIMS-PPOB--Take-Home-Test.git
+cd -SIMS-PPOB--Take-Home-Test
+````
+
+### 2️⃣ Install Dependencies
 
 ```bash
 npm install
 ```
 
-### Development
+### 3️⃣ Konfigurasi Environment
 
-Start the development server with HMR:
+Buat file `.env`:
+
+```env
+VITE_API_BASE_URL=https://your-api-url.com
+```
+
+### 4️⃣ Jalankan Aplikasi
 
 ```bash
 npm run dev
 ```
 
-Your application will be available at `http://localhost:5173`.
-
-## Building for Production
-
-Create a production build:
-
-```bash
-npm run build
-```
-
-## Deployment
-
-### Docker Deployment
-
-To build and run using Docker:
-
-```bash
-docker build -t my-app .
-
-# Run the container
-docker run -p 3000:3000 my-app
-```
-
-The containerized application can be deployed to any platform that supports Docker, including:
-
-- AWS ECS
-- Google Cloud Run
-- Azure Container Apps
-- Digital Ocean App Platform
-- Fly.io
-- Railway
-
-### DIY Deployment
-
-If you're familiar with deploying Node applications, the built-in app server is production-ready.
-
-Make sure to deploy the output of `npm run build`
+Aplikasi akan berjalan di:
 
 ```
-├── package.json
-├── package-lock.json (or pnpm-lock.yaml, or bun.lockb)
-├── build/
-│   ├── client/    # Static assets
-│   └── server/    # Server-side code
+http://localhost:5173
 ```
-
-## Styling
-
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
 
 ---
 
-Built with ❤️ using React Router.
+## 🔑 Catatan Penting
+
+* Semua API menggunakan **Bearer Token (JWT)**
+* Email user diambil dari payload JWT
+* Validasi input dilakukan di sisi client
+* Aplikasi di-deploy menggunakan **free hosting**
+* Pengerjaan dilakukan **secara mandiri**
+
+---
+
+## 👨‍💻 Author
+
+**Deklan Malik Akbar**
+Web Programmer (React JS)
+
+---
+
+Terima kasih 🙏
+
+```
+
