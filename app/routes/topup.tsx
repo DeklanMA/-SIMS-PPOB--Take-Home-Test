@@ -50,7 +50,7 @@ export default function TopUpPage() {
     try {
       await topUp({top_up_amount: parsedAmount}).unwrap();
 
-      setResultAmount(parsedAmount); // ⬅ simpan dulu
+      setResultAmount(parsedAmount); 
       setOpenConfirm(false);
       setShowSuccess(true);
       setAmount('');
