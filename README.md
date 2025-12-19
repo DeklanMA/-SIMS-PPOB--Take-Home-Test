@@ -1,4 +1,3 @@
-```md
 # SIMS PPOB – Take Home Test (React JS)
 
 Web application SIMS PPOB (Payment Point Online Bank) yang dibangun sebagai bagian dari **Take Home Test Web Programmer (React JS)**.  
