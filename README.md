@@ -50,7 +50,7 @@ https://sims-ppob-deklanmalik.vercel.app/
 - Upload foto profil (JPEG / PNG, max 100KB)
 - Default avatar jika belum upload
 - Logout
-```
+
 ## ⚙️ Cara Menjalankan Project (Local)
 
 ### 1️⃣ Clone Repository
