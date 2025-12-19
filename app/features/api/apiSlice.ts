@@ -1,29 +1,37 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react';
 import type {RootState} from '@app/store';
+import {logout} from '@app/features/auth/authSlice';
+
+const rawBaseQuery = fetchBaseQuery({
+  baseUrl: import.meta.env.VITE_API_BASE_URL,
+  prepareHeaders: (headers, {getState}) => {
+    const token = (getState() as RootState).auth.token;
+    if (token) {
+      headers.set('Authorization', `Bearer ${token}`);
+    }
+    return headers;
+  },
+});
+
+const baseQueryWithAuth = async (args: any, api: any, extraOptions: any) => {
+  const result = await rawBaseQuery(args, api, extraOptions);
+
+  if (result?.error && (result.error as any)?.data?.status === 108) {
+    api.dispatch(logout());
+    localStorage.removeItem('token');
+    window.location.href = '/login';
+  }
+
+  return result;
+};
 
 export const apiSlice = createApi({
   reducerPath: 'api',
-
+  baseQuery: baseQueryWithAuth,
   tagTypes: ['Profile', 'Balance', 'TransactionHistory'],
-
-  baseQuery: fetchBaseQuery({
-    baseUrl: import.meta.env.VITE_API_BASE_URL,
-    prepareHeaders: (headers, {getState}) => {
-      const token = (getState() as RootState).auth.token;
-      if (token) {
-        headers.set('Authorization', `Bearer ${token}`);
-      }
-      return headers;
-    },
-  }),
-
   endpoints: (builder) => ({
     login: builder.mutation<
-      {
-        status: number;
-        message: string;
-        data: {token: string};
-      },
+      {status: number; message: string; data: {token: string}},
       {email: string; password: string}
     >({
       query: (body) => ({
@@ -35,12 +43,7 @@ export const apiSlice = createApi({
 
     register: builder.mutation<
       {status: number; message: string},
-      {
-        email: string;
-        first_name: string;
-        last_name: string;
-        password: string;
-      }
+      {email: string; first_name: string; last_name: string; password: string}
     >({
       query: (body) => ({
         url: '/registration',
@@ -66,16 +69,48 @@ export const apiSlice = createApi({
       providesTags: ['Profile'],
     }),
 
-    getBalance: builder.query<
+    updateProfile: builder.mutation<
       {
         status: number;
         message: string;
-        data: {balance: number};
+        data: {
+          email: string;
+          first_name: string;
+          last_name: string;
+          profile_image: string;
+        };
       },
+      {first_name: string; last_name: string}
+    >({
+      query: (body) => ({
+        url: '/profile/update',
+        method: 'PUT',
+        body,
+      }),
+      invalidatesTags: ['Profile'],
+    }),
+
+    uploadProfileImage: builder.mutation<
+      {
+        status: number;
+        message: string;
+        data: {profile_image: string};
+      },
+      FormData
+    >({
+      query: (formData) => ({
+        url: '/profile/image',
+        method: 'PUT',
+        body: formData,
+      }),
+      invalidatesTags: ['Profile'],
+    }),
+
+    getBalance: builder.query<
+      {status: number; message: string; data: {balance: number}},
       void
     >({
       query: () => '/balance',
-
       providesTags: ['Balance'],
     }),
 
@@ -130,16 +165,11 @@ export const apiSlice = createApi({
         method: 'POST',
         body,
       }),
-
       invalidatesTags: ['Balance', 'TransactionHistory'],
     }),
 
     topUp: builder.mutation<
-      {
-        status: number;
-        message: string;
-        data: {balance: number} | null;
-      },
+      {status: number; message: string; data: {balance: number} | null},
       {top_up_amount: number}
     >({
       query: (body) => ({
@@ -147,9 +177,9 @@ export const apiSlice = createApi({
         method: 'POST',
         body,
       }),
-
       invalidatesTags: ['Balance', 'TransactionHistory'],
     }),
+
     getTransactionHistory: builder.query<
       {
         status: number;
@@ -174,44 +204,6 @@ export const apiSlice = createApi({
       }),
       providesTags: ['TransactionHistory'],
     }),
-    updateProfile: builder.mutation<
-      {
-        status: number;
-        message: string;
-        data: {
-          email: string;
-          first_name: string;
-          last_name: string;
-          profile_image: string;
-        };
-      },
-      {first_name: string; last_name: string}
-    >({
-      query: (body) => ({
-        url: '/profile/update',
-        method: 'PUT',
-        body,
-      }),
-      invalidatesTags: ['Profile'],
-    }),
-
-    uploadProfileImage: builder.mutation<
-      {
-        status: number;
-        message: string;
-        data: {
-          profile_image: string;
-        };
-      },
-      FormData
-    >({
-      query: (formData) => ({
-        url: '/profile/image',
-        method: 'PUT',
-        body: formData,
-      }),
-      invalidatesTags: ['Profile'],
-    }),
   }),
 });
 
@@ -219,12 +211,12 @@ export const {
   useLoginMutation,
   useRegisterMutation,
   useGetProfileQuery,
+  useUpdateProfileMutation,
+  useUploadProfileImageMutation,
   useGetBalanceQuery,
   useGetServicesQuery,
   useGetBannersQuery,
   useTransactionMutation,
   useTopUpMutation,
   useGetTransactionHistoryQuery,
-  useUpdateProfileMutation,
-  useUploadProfileImageMutation
 } = apiSlice;
