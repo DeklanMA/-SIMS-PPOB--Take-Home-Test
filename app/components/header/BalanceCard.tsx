@@ -6,7 +6,7 @@ type BalanceCardProps = {
 };
 
 export function BalanceCard({balance}: BalanceCardProps) {
-  const [hidden, setHidden] = useState(false);
+  const [hidden, setHidden] = useState(true);
 
   return (
     <div className="bg-red-600 text-white rounded-xl p-5 w-full max-w-md">
